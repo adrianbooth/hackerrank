@@ -8,13 +8,24 @@ namespace ConsoleApp2
         static void Main(String[] args)
         {
             int n = Convert.ToInt32(Console.ReadLine());
-            string[] arr_temp = Console.ReadLine().Split(' ');
-            int[] arr = Array.ConvertAll(arr_temp, Int32.Parse);
-            decimal itemCount = n;
+            for (int i = 1; i <= n; i++)
+            {
+                var spacesNeeded = n - i;
+                var hashesNeeded = i;
+                string output = "";
+                while (spacesNeeded > 0)
+                {
+                    output+=" ";
+                    spacesNeeded--;
+                }
 
-            Console.WriteLine(Math.Round(arr.Where(e => e > 0).Count() / itemCount, 6));
-            Console.WriteLine(Math.Round(arr.Where(e => e < 0).Count() / itemCount, 6));
-            Console.WriteLine(Math.Round(arr.Where(e => e == 0).Count() / itemCount, 6));
+                while (hashesNeeded > 0)
+                {
+                    output += "#";
+                    hashesNeeded--;
+                }
+                Console.WriteLine(output);
+            }
             Console.ReadLine();
         }
     }
