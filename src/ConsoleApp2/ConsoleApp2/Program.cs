@@ -5,20 +5,21 @@ namespace ConsoleApp2
 {
     class Program
     {
-        static int birthdayCakeCandles(int n, int[] ar)
+        static string timeConversion(string dateString)
         {
-            var highestCandle = ar.Max();
-            return ar.Where(e => e == highestCandle).Count();
+            DateTime date;
+            if (!DateTime.TryParse(dateString, out date))
+                throw new ArgumentException("error parsing date", nameof(dateString));
+
+            return date.ToString("HH:mm:ss");
         }
 
         static void Main(String[] args)
         {
-            int n = Convert.ToInt32(Console.ReadLine());
-            string[] ar_temp = Console.ReadLine().Split(' ');
-            int[] ar = Array.ConvertAll(ar_temp, Int32.Parse);
-            int result = birthdayCakeCandles(n, ar);
+            string s = Console.ReadLine();
+            string result = timeConversion(s);
             Console.WriteLine(result);
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }
