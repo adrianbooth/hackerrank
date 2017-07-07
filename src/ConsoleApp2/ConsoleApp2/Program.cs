@@ -7,25 +7,15 @@ namespace ConsoleApp2
     {
         static void Main(String[] args)
         {
-            int n = Convert.ToInt32(Console.ReadLine());
-            for (int i = 1; i <= n; i++)
-            {
-                var spacesNeeded = n - i;
-                var hashesNeeded = i;
-                string output = "";
-                while (spacesNeeded > 0)
-                {
-                    output+=" ";
-                    spacesNeeded--;
-                }
+            string[] arr_temp = Console.ReadLine().Split(' ');
+            int[] arr = Array.ConvertAll(arr_temp, Int32.Parse);
 
-                while (hashesNeeded > 0)
-                {
-                    output += "#";
-                    hashesNeeded--;
-                }
-                Console.WriteLine(output);
-            }
+            var orderedArray = arr.OrderBy(e => e);
+            long lowestSum = orderedArray.Select(e => (long)e).Take(4).Sum();
+            long highestSum = orderedArray.Select(e => (long)e).Skip(1).Take(4).Sum();
+
+            Console.WriteLine($"{lowestSum} {highestSum}");
+
             Console.ReadLine();
         }
     }
